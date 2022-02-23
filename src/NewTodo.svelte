@@ -17,13 +17,13 @@
     console.info({ labelInput })
     setTimeout(() => {
       labelInput.focus();
-    }, 0);
+    }, 25);
   }
 
   function onKeypress(event) {
     console.info({ KeyboardEvent: event });
 
-    if (label && 'key' in event && event.key == 'Enter') {
+    if (label.trim() && 'key' in event && event.key == 'Enter') {
       addNewTodo();
     }
   }
@@ -31,7 +31,7 @@
   function onFocusout(event) {
     active = false;
 
-    if ('ontouchstart' in window && navigator.maxTouchPoints > 0) {
+    if (label.trim() && 'ontouchstart' in window && navigator.maxTouchPoints > 0) {
       addNewTodo();
     }
   }
