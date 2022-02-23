@@ -16,6 +16,7 @@
     active = true;
     setTimeout(() => {
       labelInput.focus();
+      labelInput.click();
     }, 25);
   }
 
