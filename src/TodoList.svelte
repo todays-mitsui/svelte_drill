@@ -9,7 +9,6 @@
   ];
 
   function addTodo(event) {
-    console.info({ label: event.detail });
     todos = [ ...todos, { done: false, label: event.detail } ];
   }
 </script>

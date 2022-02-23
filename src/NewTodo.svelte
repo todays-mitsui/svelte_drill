@@ -8,13 +8,12 @@
   let label = '';
 
   function addNewTodo() {
-    dispatch('add', label);
+    dispatch('add', label.trim());
     label = '';
   }
 
   function onClick() {
     active = true;
-    console.info({ labelInput })
     setTimeout(() => {
       labelInput.focus();
     }, 25);
