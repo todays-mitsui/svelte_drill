@@ -3,11 +3,21 @@
 
   const dispatch = createEventDispatcher();
 
+  let labelInput;
+  let active = false;
   let label = '';
 
   function addNewTodo() {
     dispatch('add', label);
     label = '';
+  }
+
+  function onClick() {
+    active = true;
+    console.info({ labelInput })
+    setTimeout(() => {
+      labelInput.focus();
+    }, 0);
   }
 
   function onKeypress(event) {
@@ -19,6 +29,8 @@
   }
 
   function onFocusout(event) {
+    active = false;
+
     if ('ontouchstart' in window && navigator.maxTouchPoints > 0) {
       addNewTodo();
     }
@@ -26,33 +38,24 @@
 </script>
 
 <li>
+  <button
+    class:hidden={active}
+    on:click={onClick}
+  >more Todo...</button>
+
   <input
     type="text"
+    bind:this={labelInput}
     bind:value={label}
+    class:hidden={!active}
     on:keypress={onKeypress}
     on:focusout={onFocusout}
     placeholder="more Todo..."
   />
-  <p>more Todo...</p>
 </li>
 
 <style>
-  li input {
-    display: none;
-  }
-  li input:focus,
-  li:hover input {
-    display: block;
-  }
-
-  li p {
-    display: flex;
-    align-items: center;
-    height: 52px;
-    color: #666;
-  }
-  li input:focus + p,
-  li:hover p {
+  .hidden {
     display: none;
   }
 </style>
